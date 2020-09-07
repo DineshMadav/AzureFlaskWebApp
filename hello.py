@@ -1,6 +1,6 @@
 from markupsafe import escape
 
-from flask import Flask
+from flask import Flask, render_template, request
 app = Flask(__name__)
 
 @app.route("/")
@@ -34,6 +34,17 @@ def show_post(post_id):
 def show_subpath(subpath):
     # show the subpath after /path/
     return 'Subpath %s' % escape(subpath)
+
+@app.route('/upload')
+def upload_file():
+   return render_template('upload.html')
+	
+@app.route('/uploader', methods = ['GET', 'POST'])
+def upload_file():
+   if request.method == 'POST':
+      f = request.files['file']
+      f.save(secure_filename(f.filename))
+      return 'file uploaded successfully'
 
 if __name__ == "__main__":
     app.run()
