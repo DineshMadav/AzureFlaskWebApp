@@ -1,5 +1,6 @@
 from markupsafe import escape
 from werkzeug.utils import secure_filename
+import docx
 
 from flask import Flask, render_template, request
 app = Flask(__name__)
@@ -44,9 +45,16 @@ def upload_file():
 def save_file():
    if request.method == 'POST':
       f = request.files['file']
-      print(f.read())     
-      f.save(secure_filename(f.filename))
-      return 'file uploaded successfully'
+      #print(f.read())
+      doc = docx.Document(f)
+      #f.save(secure_filename(f.filename))
+      objTest = []
+
+      for para in doc.paragraphs:
+         if len(para.text):
+            objTest.append(para.text)
+      #return 'file uploaded successfully'
+      return objTest
 
 if __name__ == "__main__":
     app.run()
