@@ -44,6 +44,7 @@ def upload_file():
 def save_file():
    if request.method == 'POST':
       f = request.files['file']
+      print(f.read())     
       f.save(secure_filename(f.filename))
       return 'file uploaded successfully'
 
