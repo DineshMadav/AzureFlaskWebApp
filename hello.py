@@ -54,7 +54,7 @@ def save_file():
          if len(para.text):
             objTest.append(para.text)
       #return 'file uploaded successfully'
-      return objTest
+      return str(objTest)
 
 if __name__ == "__main__":
     app.run()
