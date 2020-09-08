@@ -1,6 +1,8 @@
 from markupsafe import escape
 from werkzeug.utils import secure_filename
 import docx
+from flask import jsonify
+
 
 from flask import Flask, render_template, request
 app = Flask(__name__)
@@ -54,7 +56,7 @@ def save_file():
          if len(para.text):
             objTest.append(para.text)
       #return 'file uploaded successfully'
-      return str(objTest)
+      return jsonify(objTest)
 
 if __name__ == "__main__":
     app.run()
