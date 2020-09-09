@@ -49,12 +49,12 @@ def save_file():
       doc = docx.Document(f)
       #f.save(secure_filename(f.filename))
       objTest = []
-
+      
       for para in doc.paragraphs:
          if len(para.text):
             objTest.append(para.text)
       #return 'file uploaded successfully'
-      user = {'username': 'Miguel'}
+      user = {'username': request.form['examiner']}
       return render_template('index.html', title='OpenTest', user=user, posts=objTest)
 
 
