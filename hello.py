@@ -54,7 +54,8 @@ def save_file():
          if len(para.text):
             objTest.append(para.text)
       #return 'file uploaded successfully'
-      return jsonify(objTest)
+      return render_template('index.html', title='OpenTest', user=user, posts=objTest)
+
 
 if __name__ == "__main__":
     app.run()
