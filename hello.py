@@ -54,6 +54,7 @@ def save_file():
          if len(para.text):
             objTest.append(para.text)
       #return 'file uploaded successfully'
+      user = {'username': 'Miguel'}
       return render_template('index.html', title='OpenTest', user=user, posts=objTest)
 
 
