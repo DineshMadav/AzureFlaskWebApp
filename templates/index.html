@@ -1,8 +1,15 @@
 <html>
     <head>
+        {% if title %}
         <title>{{ title }} - OpenTest</title>
+        {% else %}
+        <title>Welcome to OpenTest</title>
+        {% endif %}
     </head>
     <body>
-        <h1>Hello, {{ user.username }}!</h1>
+        <h1>Hi, {{ user.username }}!</h1>
+        {% for post in posts %}
+        <div><p>{{ post}}</p></div>
+        {% endfor %}
     </body>
 </html>
