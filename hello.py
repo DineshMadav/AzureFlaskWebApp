@@ -1,10 +1,9 @@
 from markupsafe import escape
 from werkzeug.utils import secure_filename
 import docx
-from flask import jsonify
 
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 app = Flask(__name__)
 
 @app.route("/")
@@ -55,8 +54,11 @@ def save_file():
             objTest.append(para.text)
       #return 'file uploaded successfully'
       user = {'username': request.form['examiner']}
-      return render_template('index.html', title='OpenTest', user=user, posts=objTest)
+      #return render_template('index.html', title='OpenTest', user=user, posts=objTest)
+      return redirect(url_for('confirm', examiner=user))
 
+@app.route('/confirm'):
+	return examiner + " - Please confirm the Test Paper"
 
 if __name__ == "__main__":
     app.run()
