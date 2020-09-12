@@ -9,9 +9,9 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 
 # Functions
 
-def savetest():
+def savetest(test):
    	timestamp = "".join(((time.ctime()).replace(":","").split())[2:])        
-	test_id = "test" + timestamp
+	test_id = test['subject'] + "-" + timestamp
 	#print('Saving Test ' + obj_test['subject'])
 
 	path = "../../opentest"
@@ -19,14 +19,14 @@ def savetest():
 
 	try:
 		file = open(join(path, name),'w')   # Trying to create a new file or open one
-		file.writelines(json.dumps({"message":"hello world"}))
+		file.writelines(json.dumps(test))
 		file.close()
 		return test_id
 
 	except:
 		#print()
 		#sys.exit(0) # quit Python
-		return "save test error"
+		return "Cannot Save the Test. Please verify uploaded file (.doc or .docx) and try again"
 
 
 
@@ -188,14 +188,15 @@ def save_file():
 
         objTest['all_questions_display'] = objTestQuestionsList
 	
+	return savetest(objTest)
 	#return jsonify(objTest)
-	return render_template('confirmTest.html', title='OpenTest', objTest=objTest)
+	#return render_template('confirmTest.html', title='OpenTest', objTest=objTest)
 
-     
+"""     
 @app.route('/savetest')
 def callSaveTest():
 	return savetest()
-
+"""
 
 
 @app.route('/confirm/<examiner>')
