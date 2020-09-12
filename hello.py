@@ -208,6 +208,15 @@ def confirm(testid, action):
    else:
       return "Test Paper deleted " + testid
 
+@app.route('/viewtest/<testid>')
+def viewtest(testid):
+   try:
+      objTest = json.loads((open("../../opentest/"+testid+".txt",'r')).read())
+      return render_template('viewtest.html', title='OpenTest', objTest=objTest, test_id=testid)
+   except:
+      return "Cannot Open Test - "	+ testid	
+
+
 
 
 if __name__ == "__main__":
