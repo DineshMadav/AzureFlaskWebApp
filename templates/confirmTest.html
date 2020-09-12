@@ -7,9 +7,15 @@
         {% endif %}
     </head>
     <body>
-        <h1>Test : {{ objTest.testname }}</h1>
+        <h3>Test : {{ objTest.testname }}</h3>
+        <h3>Subject : {{ objTest.subject }}</h3>
+        <h3>Score : {{ objTest.score }}</h3>
+        <h3>Time : {{ objTest.time }}</h3>
         {% for q in objTest.all_questions_display %}
         <div><p>{{ q.question }}</p></div>
+            {% for o in q.options %}
+            <div><p>- {{ o }}</p></div>
+            {% endfor %}
         {% endfor %}
     </body>
 </html>
