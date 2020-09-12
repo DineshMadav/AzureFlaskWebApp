@@ -3,6 +3,7 @@ from werkzeug.utils import secure_filename
 import docx
 import time
 from os.path import join
+import sys
 
 
 from flask import Flask, render_template, request, redirect, url_for, jsonify
