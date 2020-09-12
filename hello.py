@@ -204,9 +204,11 @@ def callSaveTest():
 @app.route('/confirm/<testid>/<action>')
 def confirm(testid, action):
    if action == "Yes":
-      return "Test Paper saved successfully " + testid
+      #return "Test Paper saved successfully " + testid
+      return redirect(url_for('viewtest', testid=testid))
    else:
       return "Test Paper deleted " + testid
+
 
 @app.route('/viewtest/<testid>')
 def viewtest(testid):
