@@ -26,7 +26,7 @@ def savetest(test):
 	except:
 		#print()
 		#sys.exit(0) # quit Python
-		return "Cannot Save the Test. Please verify uploaded file (.doc or .docx) and try again"
+		return False
 
 
 
@@ -188,9 +188,10 @@ def save_file():
 
         objTest['all_questions_display'] = objTestQuestionsList
 	
-	return savetest(objTest)
-	#return jsonify(objTest)
-	#return render_template('confirmTest.html', title='OpenTest', objTest=objTest)
+	if savetest(objTest):
+	   return render_template('confirmTest.html', title='OpenTest', objTest=objTest)
+	else:
+	   return "Cannot Save the Test. Please verify uploaded file (.doc or .docx) and try again"
 
 """     
 @app.route('/savetest')
