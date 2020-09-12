@@ -1,0 +1,15 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - OpenTest</title>
+        {% else %}
+        <title>Welcome to OpenTest</title>
+        {% endif %}
+    </head>
+    <body>
+        <h1>Test : {{ objTest.testname }}</h1>
+        {% for q in objTest.all_questions_display %}
+        <div><p>{{ q.question }}</p></div>
+        {% endfor %}
+    </body>
+</html>
