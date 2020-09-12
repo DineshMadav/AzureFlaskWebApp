@@ -182,14 +182,14 @@ def savetest():
 		file.close()
 		return test_id
 
-	except as e:
+	except:
 		#print()
 		#sys.exit(0) # quit Python
-		return e
+		return "save test error"
 
 @app.route('/confirm/<examiner>')
 def confirm(examiner):
    return examiner + " - Please confirm the Test Paper"
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug = True)
