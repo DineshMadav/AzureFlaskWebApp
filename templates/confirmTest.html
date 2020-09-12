@@ -7,7 +7,7 @@
         {% endif %}
     </head>
     <body>
-        <h2>Please confirm the Test paper</h2>
+        <h2>Please confirm the Test paper [ {{test_id}} ]</h2>
         <br/>
         <h3>Test : {{ objTest.testname }} | Subject : {{ objTest.subject }}</h3>
         
@@ -26,6 +26,8 @@
         </div>
         {% endfor %}
         
-        <h3>Save Test [Yes / No]</h3>
+        <a href="http://52.140.102.126:5000/confirm/{{test_id}}/Yes"><h3>YES</h3></a>
+        <a href="http://52.140.102.126:5000/confirm/{{test_id}}/No"><h3>NO</h3></a>
+        
     </body>
 </html>
