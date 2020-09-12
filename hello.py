@@ -1,6 +1,8 @@
 from markupsafe import escape
 from werkzeug.utils import secure_filename
 import docx
+import time
+from os.path import join
 
 
 from flask import Flask, render_template, request, redirect, url_for, jsonify
@@ -164,7 +166,25 @@ def save_file():
 	#return jsonify(objTest)
 	return render_template('confirmTest.html', title='OpenTest', objTest=objTest)
       
+@app.route('/savetest')
+def savetest():
+   	timestamp = "".join(((time.ctime()).replace(":","").split())[2:])        
+	test_id = "test" + timestamp
+	#print('Saving Test ' + obj_test['subject'])
 
+	path = "."
+	name = test_id + '.txt'  # Name of text file coerced with +.txt
+
+	try:
+		file = open(join(path, name),'w')   # Trying to create a new file or open one
+		file.writelines(json.dumps({"test":"testname"}))
+		file.close()
+		return test_id
+
+	except:
+		#print()
+		sys.exit(0) # quit Python
+		return 'Something went wrong! Cannot tell what?'
 
 @app.route('/confirm/<examiner>')
 def confirm(examiner):
