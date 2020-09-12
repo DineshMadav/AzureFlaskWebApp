@@ -166,7 +166,8 @@ def save_file():
 	
 	#return jsonify(objTest)
 	return render_template('confirmTest.html', title='OpenTest', objTest=objTest)
-      
+
+"""      
 @app.route('/savetest')
 def savetest():
    	timestamp = "".join(((time.ctime()).replace(":","").split())[2:])        
@@ -186,6 +187,7 @@ def savetest():
 		#print()
 		#sys.exit(0) # quit Python
 		return "save test error"
+"""
 
 @app.route('/confirm/<examiner>')
 def confirm(examiner):
