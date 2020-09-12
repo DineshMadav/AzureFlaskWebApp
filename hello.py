@@ -161,7 +161,8 @@ def save_file():
 
         objTest['all_questions_display'] = objTestQuestionsList
 	
-	return jsonify(objTest)
+	#return jsonify(objTest)
+	return render_template('confirmTest.html', title='OpenTest', objTest=objTest)
       
 
 
