@@ -178,7 +178,7 @@ def savetest():
 
 	try:
 		file = open(join(path, name),'w')   # Trying to create a new file or open one
-		file.writelines(json.dumps({"test":"testname"}))
+		file.writelines("hello world")
 		file.close()
 		return test_id
 
