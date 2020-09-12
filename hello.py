@@ -188,8 +188,9 @@ def save_file():
 
         objTest['all_questions_display'] = objTestQuestionsList
 	
-	if savetest(objTest):
-	   return render_template('confirmTest.html', title='OpenTest', objTest=objTest)
+	test_id = savetest(objTest)
+	if test_id:
+	   return render_template('confirmTest.html', title='OpenTest', objTest=objTest, test_id=test_id)
 	else:
 	   return "Cannot Save the Test. Please verify uploaded file (.doc or .docx) and try again"
 
@@ -200,9 +201,14 @@ def callSaveTest():
 """
 
 
-@app.route('/confirm/<examiner>')
-def confirm(examiner):
-   return examiner + " - Please confirm the Test Paper"
+@app.route('/confirm/<testid>/<action>')
+def confirm(testid, action):
+   if action == "Yes":
+      return "Test Paper saved successfully " + testid
+   else:
+      return "Test Paper deleted " + testid
+
+
 
 if __name__ == "__main__":
     app.run(debug = True)
