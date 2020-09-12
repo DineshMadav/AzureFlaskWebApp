@@ -57,8 +57,9 @@ def save_file():
       #return render_template('index.html', title='OpenTest', user=user, posts=objTest)
       return redirect(url_for('confirm', examiner=user))
 
-@app.route('/confirm'):
-	return examiner + " - Please confirm the Test Paper"
+@app.route('/confirm')
+def confirm(examiner):
+   return examiner + " - Please confirm the Test Paper"
 
 if __name__ == "__main__":
     app.run()
