@@ -3,7 +3,7 @@ from werkzeug.utils import secure_filename
 import docx
 import time
 from os.path import join
-import sys
+import sys, json
 
 
 from flask import Flask, render_template, request, redirect, url_for, jsonify
@@ -178,7 +178,7 @@ def savetest():
 
 	try:
 		file = open(join(path, name),'w')   # Trying to create a new file or open one
-		file.writelines("hello world")
+		file.writelines(json.dumps({"message":"hello world"}))
 		file.close()
 		return test_id
 
