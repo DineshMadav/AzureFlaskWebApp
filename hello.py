@@ -173,7 +173,7 @@ def savetest():
 	test_id = "test" + timestamp
 	#print('Saving Test ' + obj_test['subject'])
 
-	path = "."
+	path = "../../opentest"
 	name = test_id + '.txt'  # Name of text file coerced with +.txt
 
 	try:
