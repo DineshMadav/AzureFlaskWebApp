@@ -182,10 +182,10 @@ def savetest():
 		file.close()
 		return test_id
 
-	except:
+	except as e:
 		#print()
-		sys.exit(0) # quit Python
-		return 'Something went wrong! Cannot tell what?'
+		#sys.exit(0) # quit Python
+		return e
 
 @app.route('/confirm/<examiner>')
 def confirm(examiner):
