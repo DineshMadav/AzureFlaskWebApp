@@ -39,7 +39,7 @@ def show_subpath(subpath):
 @app.route('/upload')
 def upload_file():
    return render_template('upload.html')
-	
+"""	
 @app.route('/uploader', methods = ['GET', 'POST'])
 def save_file():
    if request.method == 'POST':
@@ -56,6 +56,114 @@ def save_file():
       user = {'username': request.form['examiner']}
       #return render_template('index.html', title='OpenTest', user=user, posts=objTest)
       return redirect(url_for('confirm', examiner=user))
+"""
+
+@app.route('/uploader', methods = ['GET', 'POST'])
+def save_file():
+    if request.method == 'POST':
+        f = request.files['file']
+        #print(f.read())
+        doc = docx.Document(f)
+        
+        #doc = docx.Document("testname.docx")
+        objDoc = []
+
+        for para in doc.paragraphs:
+            if len(para.text):
+                objDoc.append(para.text)
+
+        #----------------------------------------------------------------------------
+
+        testmeta = ("testname", "subject", "score", "time", "email")
+        meta = dict(q = "questions", o = "options", a = "answers")
+        objTest = {}
+
+        objTest["questions"] = []
+        objTest["options"] = []
+        objTest["answers"] = []
+
+        for line in objDoc:
+            #print(line.split(":"))
+
+            line_split = line.split(":")
+
+            if (line_split[0]).strip() in ("q","o","a"):        
+                objTest[meta[(line_split[0]).strip()]].append({"key":line_split[1].strip(),"value":line_split[2].strip()})
+            else:
+                objTest[(line_split[0]).strip()] = line_split[1].strip()
+
+        #----------------------------------------------------------------------------
+
+        total_q = len(objTest["questions"])
+
+        objTestQuestions = {}
+
+        #for item in test:
+            #print(test[item])
+
+        for i in range(total_q) :
+            get_id = str(i + 1)
+
+            for ques in objTest['questions']:
+                if ques["key"] == get_id:
+                    objTestQuestions[get_id] = {}
+                    objTestQuestions[get_id]['question'] = ques["value"]
+
+            options = []
+            for opt in objTest['options']:
+                if opt["key"] == get_id:
+                    #print(opt["value"], end=", ")
+                    options.append(opt["value"])
+            objTestQuestions[get_id]['options'] = options
+
+            for ans in objTest['answers']:
+                if ans["key"] == get_id:
+                    #objTestQuestions[get_id] = {}
+                    objTestQuestions[get_id]['answer'] = ans["value"]
+
+        objTest['all_questions_keys'] = objTestQuestions
+
+        #----------------------------------------------------------------------------
+
+        #total_q = len(objTest["questions"])
+
+        objTestQuestionsList = []
+
+
+        #for item in test:
+            #print(test[item])
+
+        for i in range(total_q) :
+            get_id = str(i + 1)
+            objTestQuestions = {}
+
+            objTestQuestions['key'] = get_id
+            #print(objTestQuestions)
+
+            for ques in objTest['questions']:
+                if ques["key"] == get_id:             
+                    objTestQuestions['question'] = ques["value"]
+
+            options = []
+            for opt in objTest['options']:
+                if opt["key"] == get_id:
+                    #print(opt["value"], end=", ")
+                    options.append(opt["value"])
+            objTestQuestions['options'] = options
+
+            for ans in objTest['answers']:
+                if ans["key"] == get_id:
+                    #objTestQuestions[get_id] = {}
+                    objTestQuestions['answer'] = ans["value"]
+
+            objTestQuestionsList.append(objTestQuestions)
+
+
+        objTest['all_questions_display'] = objTestQuestionsList
+	
+	return jsonify(objTest)
+      
+
 
 @app.route('/confirm/<examiner>')
 def confirm(examiner):
