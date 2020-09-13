@@ -240,7 +240,7 @@ def submittest(testid):
                user_score += 10
     
       
-      return "Your Score : " + user_score
+      return "Your Score : " + str(user_score)
    else:
       return "Invalid Submittion"
 	
