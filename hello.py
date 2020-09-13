@@ -229,7 +229,7 @@ def starttest(testid):
       return "Cannot Open Test - "	+ testid
 
 @app.route('/submittest/<testid>', methods = ['GET', 'POST'])
-def submittest():
+def submittest(testid):
    if request.method == 'POST':
       req = request.form
       load_test = json.loads((open("../../opentest/"+testid+".txt",'r')).read())
