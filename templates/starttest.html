@@ -15,7 +15,7 @@
         
         <br/>
         
-        <form action = "http://52.140.102.126:5000/submittest" method = "POST">
+        <form action = "http://52.140.102.126:5000/submittest/{{test_id}}" method = "POST">
             <p>Enter Your Name : <input type = "text" name = "user" /></p>
         <h3>Questions :</h3>
         {% for q in objTest.all_questions_display %}
