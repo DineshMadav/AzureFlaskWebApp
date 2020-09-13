@@ -1,0 +1,39 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - OpenTest</title>
+        {% else %}
+        <title>Welcome to OpenTest</title>
+        {% endif %}
+    </head>
+    <body>
+        <h2>Test ID : [ {{test_id}} ]</h2>
+        <br/>
+        <h3>Test : {{ objTest.testname }} | Subject : {{ objTest.subject }}</h3>
+        
+        <h3>Score : {{ objTest.score }} | Time : {{ objTest.time }}</h3>
+        
+        <br/>
+        <h3>Questions :</h3>
+        <form action = "http://52.140.102.126:5000/submittest" method = "POST">
+ 
+        {% for q in objTest.all_questions_display %}
+        <div>
+            <p>{{ q.key }} ----------------------------------------------------------------------------------- </p>
+            <p>Question : {{ q.question }}</p>
+            <p><small>Please select correct answer below</small></p>
+            {% for o in q.options %}
+            <p><input type="radio" name="ans_{{q.key}}" value="o" >{{ o }}</p>            
+            {% endfor %}
+            <p>----------------------------------------------------------------------------------------------- </p>
+        </div>
+        {% endfor %}
+        
+        <input type = "submit"/>
+        
+        </form>
+        
+        
+        
+    </body>
+</html>
