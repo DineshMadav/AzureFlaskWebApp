@@ -223,11 +223,10 @@ def viewtest(testid):
 @app.route('/starttest/<testid>', methods = ['GET', 'POST'])
 def starttest(testid):
    if request.method == 'POST':
-      try:
-         objTest = json.loads((open("../../opentest/"+testid+".txt",'r')).read())
-         return render_template('starttest.html', title='OpenTest', objTest=objTest, test_id=testid, user=request.form.user)
-      except:
-         return "Cannot Open Test - " + testid
+      
+      objTest = json.loads((open("../../opentest/"+testid+".txt",'r')).read())
+      return render_template('starttest.html', title='OpenTest', objTest=objTest, test_id=testid, user=request.form.user)
+      #      return "Cannot Open Test - " + testid
    if request.method == 'GET':
         return render_template('getdetails.html', test_id=testid)     
 
