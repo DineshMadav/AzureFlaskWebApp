@@ -88,6 +88,8 @@ def save_file():
 @app.route('/uploader', methods = ['GET', 'POST'])
 def save_file():
     if request.method == 'POST':
+	req = request.form
+	print(json.dumps(req.items()))
         f = request.files['file']
         #print(f.read())
         doc = docx.Document(f)
