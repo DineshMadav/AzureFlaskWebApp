@@ -23,7 +23,7 @@
             <p>Question : {{ q.question }}</p>
             <p><small>Please select correct answer below</small></p>
             {% for o in q.options %}
-            <p><input type="radio" name="ans_{{q.key}}" value="o" >{{ o }}</p>            
+            <p><input type="radio" name="ans_{{q.key}}" value="{{o}}" >{{ o }}</p>            
             {% endfor %}
             <p>----------------------------------------------------------------------------------------------- </p>
         </div>
