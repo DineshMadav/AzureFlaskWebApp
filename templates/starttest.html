@@ -7,8 +7,10 @@
         {% endif %}
     </head>
     <body>
+        
         <h2>Test ID : [ {{test_id}} ]</h2>
         <br/>
+        {% if user %}
         <h3>Test : {{ objTest.testname }} | Subject : {{ objTest.subject }}</h3>
         
         <h3>Score : {{ objTest.score }} | Time : {{ objTest.time }}</h3>
@@ -33,7 +35,7 @@
         <input type = "submit"/>
         
         </form>
-        
+        {% endif %}
         
         
     </body>
