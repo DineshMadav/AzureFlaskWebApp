@@ -1,11 +1,12 @@
 <html>
    <body>
-      <form action = "http://52.140.102.126:5000/uploader" method = "POST" 
-         enctype = "multipart/form-data">
+      <form action = "http://52.140.102.126:5000/uploader" method = "POST" enctype = "multipart/form-data">
+         <p>Name : </p>
+         <input type = "text" name = "examiner" />
+         <br/>
+         <p>Upload Test : </p>
          <input type = "file" name = "file" />
          <br/>
-         <p>Name : </p>
-         <input type = "text" name = "examiner" />         
          <input type = "submit"/>
       </form>
    </body>
