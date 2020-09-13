@@ -228,11 +228,19 @@ def starttest(testid):
    except:
       return "Cannot Open Test - "	+ testid
 
-@app.route('/submittest', methods = ['GET', 'POST'])
+@app.route('/submittest/<testid>', methods = ['GET', 'POST'])
 def submittest():
    if request.method == 'POST':
       req = request.form
-      return jsonify(req.items())
+      load_test = json.loads((open("../../opentest/"+testid+".txt",'r')).read())
+      user_score = 0
+      for i in req:
+         if not str(i[0]) == "user":
+            if str(i[1]) == load_test['all_questions_keys'][str(i[0].split("_")[1])]["answer"]:
+               user_score += 10
+    
+      
+      return "Your Score : " + user_score
    else:
       return "Invalid Submittion"
 	
