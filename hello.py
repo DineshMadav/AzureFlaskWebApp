@@ -220,6 +220,23 @@ def viewtest(testid):
    except:
       return "Cannot Open Test - "	+ testid	
 
+@app.route('/starttest/<testid>')
+def starttest(testid):
+   try:
+      objTest = json.loads((open("../../opentest/"+testid+".txt",'r')).read())
+      return render_template('starttest.html', title='OpenTest', objTest=objTest, test_id=testid)
+   except:
+      return "Cannot Open Test - "	+ testid
+
+@app.route('/submittest', methods = ['GET', 'POST'])
+def submittest():
+   if request.method == 'POST':
+      req = request.form
+      return jsonify(req.items())
+   else:
+      return "Invalid Submittion"
+	
+
 
 
 
