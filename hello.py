@@ -234,7 +234,7 @@ def submittest(testid):
       req = request.form
       load_test = json.loads((open("../../opentest/"+testid+".txt",'r')).read())
       user_score = 0
-      for i in req:
+      for i in req.items():
          if not str(i[0]) == "user":
             if str(i[1]) == load_test['all_questions_keys'][str(i[0].split("_")[1])]["answer"]:
                user_score += 10
