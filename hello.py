@@ -4,6 +4,7 @@ import docx
 import time
 from os.path import join
 import sys, json
+from flask_mail import Mail, Message
 
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 
@@ -32,6 +33,16 @@ def savetest(test):
 
 
 app = Flask(__name__)
+mail= Mail(app)
+
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'tubelites@gmail.com'
+app.config['MAIL_PASSWORD'] = 't00gl3123'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
+
 
 @app.route("/")
 def index():
@@ -249,7 +260,12 @@ def submittest(testid):
       return "Invalid Submittion"
 	
 
-
+@app.route("/sendemail")
+def sendemail():
+   msg = Message('Hello', sender = 'tubelites@gmail.com', recipients = ['leena.madav@gmail.com'])
+   msg.body = "Hello Flask message sent from Flask-Mail"
+   mail.send(msg)
+   return "Sent"
 
 
 if __name__ == "__main__":
