@@ -1,5 +1,6 @@
 <html>
     <head>
+        {{ bootstrap.load_css() }}
         {% if title %}
         <title>{{ title }} - OpenTest</title>
         {% else %}
@@ -11,5 +12,6 @@
         {% for post in posts %}
         <div><p>{{ post}}</p></div>
         {% endfor %}
+        {{ bootstrap.load_js() }}
     </body>
 </html>
