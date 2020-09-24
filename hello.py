@@ -5,6 +5,7 @@ import time
 from os.path import join
 import sys, json
 from flask_mail import Mail, Message
+from flask_bootstrap import Bootstrap
 
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 
@@ -34,6 +35,7 @@ def savetest(test):
 
 app = Flask(__name__)
 mail= Mail(app)
+bootstrap = Bootstrap(app)
 
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
